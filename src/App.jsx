@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div className="m-20">
+      <div className="m-20 px-20">
         <h1 className="text-6xl text-center my-20 text-purple-600">Coffees : {coffees.length}</h1>
         <div className="grid md:grid-cols-2 gap-4">
         {
