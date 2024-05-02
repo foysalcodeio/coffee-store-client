@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import NavbarH from "../components/NavbarH";
 
 const Main = () => {
     return (
         <div className='mx-auto'>
-             <Header></Header>
+            <Navbar></Navbar>
+            <NavbarH></NavbarH>
             <Outlet></Outlet>           
         </div>
     );

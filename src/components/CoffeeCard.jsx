@@ -24,7 +24,6 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
                     },
                     body: JSON.stringify(result)
                 })
-
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -46,24 +45,32 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
     }
 
     return (
-        <div className="card card-side bg-slate-50 shadow-xl">
-            <figure><img src={photo} alt="Movie" /></figure>
-            <div className="flex justify-between w-full pr-4">
-                <div className="">
-                    <h2 className="card-title text-gray-800">Name: {name}</h2>
-                    <p className="text-gray-800">Quantity : {quantity}</p>
-                    <p className="text-gray-800">Supplier : {supplier}</p>
-                    <p className="text-gray-800">Taste : {taste}</p>
+        <div className="card card-side bg-slate-50 shadow-xl flex">
+            
+            <div className="flex justify-between items-center w-full pr-4">
+            <div>
+                <figure><img src={photo} alt="Movie" /></figure>
+            </div>
+
+                <div className="border ">
+                    <h2 className="card-title text-gray-800 text-2xl"><b>Name:</b> {name}</h2>
+                    <p className="text-gray-800 text-xl"><b>Quantity :</b> {quantity} pcs</p>
+                    <p className="text-gray-800 text-xl"><b>Supplier : </b>{supplier}</p>
+                    <p className="text-gray-800 text-xl"><b>Taste : </b> {taste} / 1000</p>
                 </div>
                 <div className="card-actions justify-end">
                     <div className="join join-vertical space-y-4">
-                        <button className="btn border-none join-item">View</button>
+                    
+                        <Link to={`coffeeDetails/${_id}`}>
+                        <button className="btn border-none join-item text-white bg-blue-500">View</button>
+                        </Link>
+
                         <Link to={`updateCoffee/${_id}`}>
-                            <button className="btn border-none join-item">Edit</button>
+                            <button className="btn border-none join-item text-white">Edit</button>
                         </Link>
                         <button
                             onClick={() => handleDelete(_id)}
-                            className="btn border-none bg-red-500 join-item">X</button>
+                            className="btn border-none bg-red-500 join-item text-white">Delete</button>
                     </div>
                 </div>
             </div>

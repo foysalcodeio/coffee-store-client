@@ -1,31 +1,44 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Info from "./Info";
 
 const Header = () => {
-    const links = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/users">Users</NavLink></li>
-        <li><NavLink to="/signup">Sign Up</NavLink></li>
-        <li><NavLink to="/signin">Sign In</NavLink></li>
-    </>
-    return (
+    const [store, setStore] = useState([])
 
-        <div className="navbar bg-cyan-50 text-black ">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow rounded-box w-72">
-                        {links}
-                    </ul>
+    useEffect(() => {
+        fetch('/images/icons.json')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setStore(data);
+            })
+    }, [])
+
+
+
+    return (
+        <div>
+
+            <div className="bg-cover h-screen bg-[url('https://i.postimg.cc/T3VvBrtf/3.png')] bg-no-repeat grid grid-cols-2">
+                <div className="flex">
                 </div>
-                <a className="btn btn-ghost text-xl">Coffee store</a>
+                <div className="flex items-center space-y-6">
+                    <div className="leading-6 mr-5">
+                        <h1 className="text-5xl tracking-wider font-rancho">Would you like a Cup of Delicious Coffee</h1><br />
+                        <p className="text-2xl tracking-wider">it's coffee time - Sip & Savor - Relaxation in every sip! Get the nostalgia back!! Your companion of every moment!!! Enjoy the beautiful moments and make them memorable</p><br />
+                        <button className="btn bg-dark-yellow text-black text-xl hover:text-white hover:border-gray-50 font-rancho">Learn More</button>
+                    </div>
+                </div>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="flex:md menu-dropdown menu menu-horizontal px-1 ">
-                    {links}
-                </ul>
+
+            <div className="grid grid-cols-4 bg-custom-light">
+                {
+                    store.map(product => <Info
+                        id={product.id}
+                        product={product}
+                    ></Info>)
+                }
             </div>
-            <div className="navbar-end">
-                <a className="btn border-none bg-slate-800 text-white"></a>
-            </div>
+            
         </div>
     );
 };

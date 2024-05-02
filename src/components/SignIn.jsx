@@ -19,13 +19,23 @@ const SignIn = () => {
                 email,
                 lastLoggedAt: result.user?.metadata?.lastSignInTime
             }
-            // update last logged at in the database
             
+            // update last logged at in the database
+            fetch(`http://localhost:5000/user`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
         })
         .catch(error => {
             console.error(error)
         })
-
     };
 
 
@@ -53,6 +63,17 @@ const SignIn = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            <div className="form-control flex gap-5">
+                                <h2>Gender : </h2>
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">Male</span>
+                                    <input type="radio" name="radio-10" className="radio checked:bg-Blue-500" checked />
+                                </label>
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">FeMale</span>
+                                    <input type="radio" name="radio-10" className="radio checked:bg-violet-500" checked />
+                                </label>
+                                </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
