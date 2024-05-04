@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import NavbarH from "../components/NavbarH";
 import Footer from "../components/Footer";
+import Copyright from "../components/Copyright";
 
 const Main = () => {
     return (
@@ -9,7 +10,8 @@ const Main = () => {
             <Navbar></Navbar>
             <NavbarH></NavbarH>
             <Outlet></Outlet>   
-            <Footer></Footer>        
+            <Footer></Footer>  
+            <Copyright></Copyright>      
         </div>
     );
 };
